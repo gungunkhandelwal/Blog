@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %} Add Post {% endblock %}
+{% block content %}
+
+<div class="add-post">
+  {% if user.is_authenticated %}
+
+  <h1>Add Post</h1>
+  <br>
+  <div class="form-group">
+    <form method="Post" enctype="multipart/form-data">
+      {%csrf_token%}
+      {{form.media}}
+      <div class="form-content">
+        <label>Title:</label>
+        {{form.title}}
+      </div>
+      <div class="form-content">
+        <label>Category:</label>
+        {{form.category}}
+      </div>
+      <div class="form-content">
+        <label>About:</label>
+        <div class="tab">{{form.about}}</div>
+      </div>
+      <div class="form-content">
+        <label>Image:</label><br>
+
+        {{form.img}}
+      </div>
+      <div class="form-content">
+        <label>Snippet:</label><br>
+        {{form.snippet}}
+      </div><br>
+      <button type="submit" class="btn1">Post</button>
+    </form>
+  </div>
+  <script>
+    var name = "{{user.id}}";
+    document.getElementById('gungun').value = name;
+  </script>
+
+  {% else %}
+  <script>
+    alert("Please first register!!")
+  </script>
+  {% endif %}
+</div>
+{% endblock %}

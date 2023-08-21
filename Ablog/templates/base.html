@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Blog{% endblock%}</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <link rel="stylesheet" href="{% static 'contact.css' %}">
+    <link rel="stylesheet" href="{% static 'add-post.css' %}">
+    
+
+</head>
+
+<body>
+    <header>
+        <h1 class="main-head">Blogs</h1>
+
+        <div class="icons">
+            <div class="left-icons">
+                <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i> </a>
+                <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+                <a href="https://twitter.com/"><i class="fa fa-twitter "></i></a>
+            </div>
+            <div class="right-icons">
+                <a href="#" class="SearchBtn">
+                    <i class="fa fa-search"></i>
+                </a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><i class="fa fa-user"></i></a>
+                {% else %}
+                <a href="{% url 'login' %}"><i class="fa fa-user"></i></a>
+                {% endif %}
+
+            </div>
+        </div>
+    </header>
+    <div class="menu-bar">
+        <ul>
+            <li class="active"><a href="{% url 'index' %}">Home</a></li>
+            {% if cat_menu %}
+            <li><a href="#">Category<i class="fa fa-angle-down"></i></a>
+                <div class="sub-menu-1">
+                    <ul>
+                        {% for item in cat_menu %}
+                        <li>
+                            <a href="{% url 'category' item|slugify %}">{{item}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </li>
+            {%endif%}
+            <li><a href="#">Pages<i class="fa fa-angle-down"></i></a>
+                {% if user.is_authenticated %}
+                <div class="sub-menu-1 ">
+                    <ul>
+                        <li><a href="{% url 'Add_post'%}">Add Post</a></li>
+                        <li><a href="{% url 'Add_category' %}">Add Category</a></li>
+                        <li><a href="{% url 'category_list'%}">Categories</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            {% else %}
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+
+            {% endif%}
+            <li><a href="#">Profile<i class="fa fa-angle-down"></i></a>
+                {% if user.is_authenticated %}
+                <div class="sub-menu-1">
+                    <ul>
+                        <li><a href="#">{{user.username}}</a></li>
+                        <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+                    </ul>
+                </div>
+            </li>
+               {% else %}
+                <div class="sub-menu-1">
+                   <ul>
+                      <l1><a href="{% url 'login' %}">Login</a></l1>
+                   </ul>
+                </div>
+            {% endif %}
+        </ul>
+    </div>
+
+
+    <div class="container">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <footer>
+        <div class="handle">
+            <a href="#">FAQ</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="f-icon">
+
+            <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i> </a>
+            <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
+            <a href="https://twitter.com/"><i class="fa fa-twitter "></i></a>
+        </div>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
+</body>
+
+</html>

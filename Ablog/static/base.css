@@ -1,0 +1,155 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+ body{
+    background-color:#faeaff;
+    font-family:system-ui;
+    
+}
+header{
+    color:black;
+    text-align: center;
+    padding: 20px;
+    font-size: large;
+}
+.icons a {
+    margin: 5px;
+    padding: 5px 5px;
+    color: black;
+}
+.left-icons{
+    text-align: left;
+    /* margin: 10px;
+    padding: 5px 5px;
+    color: black; */
+}
+.right-icons{
+    text-align: right;
+    /* margin: 10px;
+    padding: 5px 5px;
+    color: black;
+*/}
+.icons a:hover{
+    color:#65baa9;
+}
+.main-menu{
+    margin-top: 3px;
+    padding-bottom: 12px;
+}
+/* Header ends */
+
+/* Navebar */
+.menu-bar{
+    background-color: #65baa9;
+    color: black;
+    text-align: center;
+}
+.menu-bar ul{
+    display: inline-flex;
+    list-style: none;
+}
+
+.menu-bar ul li{
+    width: 100px;
+    margin: 10px;
+    padding:10px;
+}
+
+.menu-bar ul li a{
+    text-decoration: none;
+    color: black;
+}
+.menu-bar ul li :hover{
+    background-color:#faeaff;
+    color:black;
+    border-radius: 3px;
+
+}
+.sub-menu-1{
+    display:none;
+    background-color: #65baa9;
+}
+.menu-bar ul li:hover .sub-menu-1{
+    display: block;
+    position: absolute;
+    background-color:#65baa9;
+    margin-top: 15px;
+    margin-left: -15px;
+
+}
+.menu-bar ul li:hover .sub-menu-1 ul{
+    display: block;
+    margin: 10px;
+    background-color:#65baa9;
+
+}
+.menu-bar ul li:hover .sub-menu-1 ul li {
+    width: 120px;
+    padding: 10px;
+    border-bottom: 1px dotted;
+    background: transparent;
+    border-radius: 0;
+    text-align: left;
+    background-color:#65baa9;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li:last-child{
+    border-bottom: none;
+}
+.menu-bar ul li:hover .sub-menu-1 ul li a:hover{
+    background-color:#faeaff;
+    color:black;
+}
+
+.container{
+    margin: 50px;
+    padding: 20px 30px;
+    list-style: none;
+    font-size: large;
+}
+
+footer {
+    text-align: center;
+    background-color: #65baa9;
+    /* display: block; */
+    padding: 10px 20px;
+    margin-top: 10px;
+    text-decoration: none;
+
+}
+
+footer a{
+    padding: 10px 15px;
+    margin: 5px;
+    color: black;
+}
+
+footer a :hover{
+    color: #faeaff;
+}
+footer .handle a:hover{
+    color: #faeaff;
+}
+
+@media screen and (max-width:600px){
+    .main-head{
+        font-size: 20px;
+    }
+    .left-icons i{
+        font-size: 10px;
+    }
+    .right-icons i{
+        font-size: 10px;
+    }
+    .menu-bar ul li{
+        margin: 1px;
+        font-size:10px;
+        padding: 5px 5px;
+    }
+    .container{
+        font-size: medium;
+        margin:20px;
+    }
+    
+}

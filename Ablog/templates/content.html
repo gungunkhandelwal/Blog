@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Article {% endblock %}
+{% block content %}
+<nav>Detailed Post</nav>
+<h1>{{post.title}}</h1>
+<small>By: {{post.author}}</small>
+<br>
+<small>{{post.post_date}}</small><br>
+<img src="media/{{post.img}}"><br>
+<hr>
+<br>
+{{post.about|safe}}<br>
+<a href="{% url 'index' %}">back</a>
+<hr>
+<br>
+<h2>Comment</h2>
+{% if not post.comments.all %}
+No Comments Yet..<a href="{% url 'add_comment' post.pk %}">Add One</a>
+{% else %}
+{% for comment in post.comments.all %}
+<strong>{{comment.name}}-{{comment.date_post}}</strong>
+<br>
+{{comment.body}}
+<br>
+<br>
+<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+{% endfor %}
+{% endif %}<br>
+{% if user.id == post.author.id %}
+<small><a href="{% url 'updatepost' post.pk %}">Edit</a></small> 
+<small><a href="{% url 'deletepost' post.pk %}">Delete</a></small> <br>
+{% endif %}
+
+
+
+{% endblock %}

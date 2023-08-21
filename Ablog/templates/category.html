@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if category_post %}
+<h1>{{cats}}</h1>
+<ul>
+    {% for post in category_post %}
+       <li><a href="{% url 'content' post.pk%}">{{post.title}}</a>-{{post.author}}- <small>({{post.post_date}}) </small>
+          <hr>
+      </li>
+    
+    {%endfor%}
+</ul>
+
+{%else%}
+ Not Exist
+{%endif%}
+
+{% endblock%}
+    

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+
+  <h1>{{Post.title}}</h1>
+  {% if user.is_authenticated %}
+  <ul>
+    {% for post in post_list%}
+    <li>
+      <h1>{{post.title}}</a></h1><br>
+      By {{post.author}} ({{post.post_date}})
+      <img src="media/{{post.img}}" class="image"><br>
+      <br>
+      Category:
+      <a href="{% url 'category' post.category|slugify %}">{{post.category}}</a><br>
+      <a href="{% url 'content' post.pk %}">{{post.snippet}}</a>
+
+    </li>
+  </ul>
+  {% endfor %}
+  {% else %}
+  {% for post in post_list%}
+
+  <li>
+    <h1>{{post.title}}</a></h1><br>
+    <a href="{% url 'category' post.category|slugify %}">{{post.category}}</a><br>
+    By {{post.author}} ({{post.post_date}})<br>
+    <img src="media/{{post.img}}" class="image"><br>
+    {{post.about|safe}}
+    <br>
+    <hr>
+    <strong> Comments Here!</strong><br>
+    {% if not post.comments.all %}
+    No Comments Yet..<a href="{% url 'add_comment' post.pk %}">Add One</a>
+    {% else %}
+    {% for comment in post.comments.all %}
+    <strong>{{comment.name}}-{{comment.date_post}}</strong>
+    <br>
+    {{comment.body}}
+    <br>
+    <br>
+    <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+    {% endfor %}
+    {% endif %}
+    <hr>
+  </li>
+  {% endfor %}
+
+  {% endif %}
+{% endblock%}
